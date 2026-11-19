@@ -331,6 +331,7 @@ function MobileNativeChatOverlayContent({
                       question={controller.nativeChatQuestion}
                       onAnswerQuestion={controller.handleNativeChatQuestionAnswer}
                       permission={controller.nativeChatPermission}
+                      workerApprovals={controller.nativeChatWorkerApprovals}
                       onRespondPermission={controller.handleNativeChatRespondPermission}
                       composerTray={composerTray}
                       onOpenFile={onOpenFile}

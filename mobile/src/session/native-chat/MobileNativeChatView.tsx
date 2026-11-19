@@ -36,6 +36,7 @@ import { MobileNativeChatAwaitingInputRow } from './transcript/messages/MobileNa
 import { MobileNativeChatFloatingControls } from './lower-region/MobileNativeChatFloatingControls'
 import { MobileNativeChatDraftComposer } from './composer/MobileNativeChatDraftComposer'
 import { MobileNativeChatPromptCard } from './input/prompts/MobileNativeChatPromptCard'
+import { MobileNativeChatWorkerApproval } from './input/prompts/MobileNativeChatWorkerApproval'
 import type { MobileNativeChatMicProps } from './composer/dictation/MobileNativeChatComposerMic'
 import { useMobileNativeChatPromptInputOwner } from './input/prompts/use-mobile-native-chat-prompt-input-owner'
 import {
@@ -131,6 +132,7 @@ export function MobileNativeChatView({
   question,
   onAnswerQuestion,
   permission,
+  workerApprovals,
   promptKey,
   onRespondPermission,
   composerTray: { content: trayContent, composerInputRef: inputRef, steerHead } = NO_COMPOSER_TRAY,
@@ -291,6 +293,7 @@ export function MobileNativeChatView({
         {trayContent}
         <MobileNativeChatOfflineQueue queue={offlineQueue} />
       </MobileNativeChatQueueAbovePromptContext>
+      {workerApprovals ? <MobileNativeChatWorkerApproval approvals={workerApprovals} /> : null}
       <MobileNativeChatPromptCard
         key={promptKey ?? undefined}
         answering={promptOwnsInput && keyboardInset > 0}

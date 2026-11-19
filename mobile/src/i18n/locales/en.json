@@ -3818,6 +3818,13 @@
     "eventRow": {
       "running": "Running",
       "failed": "Failed"
+    },
+    "workerApproval": {
+      "worker": "Worker · {{name}}",
+      "workerAndMore": "{{worker}} · {{count}} more waiting",
+      "countdown": "Claude denies it on its own in {{time}} if nobody answers.",
+      "allow": "Allow",
+      "deny": "Deny"
     }
   },
   "sourceControl": {

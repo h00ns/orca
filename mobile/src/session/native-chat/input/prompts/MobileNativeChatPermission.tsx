@@ -29,9 +29,12 @@ function MobileNativeChatPermissionImpl({
   onRespond,
   onCancel,
   onCollapse,
-  onAnswerInTerminal
+  onAnswerInTerminal,
+  subtitle
 }: {
   permission: MobileChatPermission
+  /** A quiet line under the title, such as which worker asks. */
+  subtitle?: string
   onRespond: (send: string) => Promise<boolean>
   /** Shown when the card has no options: only the terminal can answer it. */
   onAnswerInTerminal?: () => void
@@ -72,14 +75,21 @@ function MobileNativeChatPermissionImpl({
     <View testID="native-chat-approval-card" style={styles.card}>
       <View style={styles.header}>
         <ShieldQuestion size={16} color={colors.accentBlue} strokeWidth={2} />
-        <Text
-          testID="native-chat-approval-title"
-          style={styles.title}
-          numberOfLines={2}
-          ellipsizeMode="tail"
-        >
-          {title}
-        </Text>
+        <View style={styles.titleBlock}>
+          <Text
+            testID="native-chat-approval-title"
+            style={styles.title}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            {title}
+          </Text>
+          {subtitle ? (
+            <Text style={styles.subtitle} numberOfLines={1}>
+              {subtitle}
+            </Text>
+          ) : null}
+        </View>
         <MobileNativeChatCardHeaderAction
           prompt={permission.prompt}
           onCancel={onCancel}
@@ -261,11 +271,15 @@ const styles = themedStyleSheet(() => ({
     gap: spacing.sm,
     flexShrink: 0
   },
+  titleBlock: { flex: 1, gap: 2 },
   title: {
-    flex: 1,
     color: colors.textPrimary,
     fontSize: typography.bodySize,
     fontWeight: '600'
+  },
+  subtitle: {
+    color: colors.textSecondary,
+    fontSize: typography.metaSize
   },
   detail: {
     color: colors.textSecondary,
